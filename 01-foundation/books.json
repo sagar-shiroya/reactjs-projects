@@ -1,0 +1,14 @@
+[
+	{
+		"id": 1,
+		"title": "Designing Data Intensive Applications",
+		"author": "Martin Kleppman",
+		"publisher": "O'reilly"
+	},
+	{
+		"id": 2,
+		"title": "Database Internals",
+		"author": "Petrov",
+		"publisher": "O'reilly"
+	}
+]

@@ -1,23 +1,9 @@
 import "./App.css";
 import Book from "./components/Book";
+import books from "../books.json";
 
 function App() {
 	const name = "Sagar";
-	const books = [
-		{
-			id: 1,
-			title: "Designing Data Intensive Applications",
-			author: "Martin Kleppman",
-			publisher: "O'reilly",
-		},
-		{
-			id: 2,
-			title: "Database Internals",
-			author: "Petrov",
-			publisher: "O'reilly",
-		},
-	];
-
 	const genres = ["technical", "fictional", "non-fictional"];
 
 	return (
