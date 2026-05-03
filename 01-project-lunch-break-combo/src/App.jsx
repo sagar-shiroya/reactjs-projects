@@ -6,6 +6,7 @@ function App() {
 	const [mealImage, setMealImage] = useState(null);
 	const [joke, setJoke] = useState(null);
 	const [quote, setQuote] = useState(null);
+	const [mode, setMode] = useState("light");
 
 	async function setRandomMeal() {
 		const url = "https://api.freeapi.app/api/v1/public/meals/meal/random";
@@ -66,12 +67,16 @@ function App() {
 		setRandomQuote();
 	}
 
+	function toggleDarkLightMode() {
+		setMode(mode === "light" ? "dark" : "light");
+	}
+
 	useEffect(() => {
 		generateNewCombo();
 	}, []);
 
 	return (
-		<div className="light">
+		<div id="parent" className={mode}>
 			<h1>Lunch Break Buddy</h1>
 			<div className="actionButtons">
 				<button className="generateCombo" onClick={generateNewCombo}>
@@ -83,8 +88,11 @@ function App() {
 				<button className="generateCombo" onClick={setRandomJoke}>
 					Generate Joke
 				</button>
-				<button className="material-icons" onClick={setRandomQuote}>
+				<button className="generateCombo" onClick={setRandomQuote}>
 					Generate Quote
+				</button>
+				<button className="generateCombo" onClick={toggleDarkLightMode}>
+					Toggle Dark/Light Mode
 				</button>
 			</div>
 
