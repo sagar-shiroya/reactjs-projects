@@ -1,9 +1,9 @@
 import "./App.css";
 import { useEffect, useState } from "react";
+import MealCard from "./components/MealCard";
 
 function App() {
 	const [meal, setMeal] = useState(null);
-	const [mealImage, setMealImage] = useState(null);
 	const [joke, setJoke] = useState(null);
 	const [quote, setQuote] = useState(null);
 	const [mode, setMode] = useState("light");
@@ -19,8 +19,7 @@ function App() {
 			const response = await fetch(url, options);
 			const data = await response.json();
 			console.log(data);
-			setMeal(data.data.strMeal);
-			setMealImage(data.data.strMealThumb);
+			setMeal(data.data);
 		} catch (error) {
 			console.error(error);
 		}
@@ -72,7 +71,41 @@ function App() {
 	}
 
 	useEffect(() => {
-		generateNewCombo();
+		async function loadInitialCombo() {
+			const mealUrl =
+				"https://api.freeapi.app/api/v1/public/meals/meal/random";
+			const quoteUrl =
+				"https://api.freeapi.app/api/v1/public/quotes/quote/random";
+			const jokeUrl =
+				"https://api.freeapi.app/api/v1/public/randomjokes/joke/random";
+			const options = {
+				method: "GET",
+				headers: { accept: "application/json" },
+			};
+
+			try {
+				const [mealResponse, jokeResponse, quoteResponse] =
+					await Promise.all([
+						fetch(mealUrl, options),
+						fetch(jokeUrl, options),
+						fetch(quoteUrl, options),
+					]);
+
+				const [mealData, jokeData, quoteData] = await Promise.all([
+					mealResponse.json(),
+					jokeResponse.json(),
+					quoteResponse.json(),
+				]);
+
+				setMeal(mealData.data);
+				setJoke(jokeData.data.content);
+				setQuote(quoteData.data.content);
+			} catch (error) {
+				console.error(error);
+			}
+		}
+
+		loadInitialCombo();
 	}, []);
 
 	return (
@@ -82,14 +115,14 @@ function App() {
 				<button className="generateCombo" onClick={generateNewCombo}>
 					Generate a New Combo
 				</button>
-				<button className="generateCombo" onClick={setRandomMeal}>
-					Generate Meal
-				</button>
 				<button className="generateCombo" onClick={setRandomJoke}>
 					Generate Joke
 				</button>
 				<button className="generateCombo" onClick={setRandomQuote}>
 					Generate Quote
+				</button>
+				<button className="generateCombo" onClick={setRandomMeal}>
+					Generate Meal
 				</button>
 				<button className="generateCombo" onClick={toggleDarkLightMode}>
 					Toggle Dark/Light Mode
@@ -98,11 +131,6 @@ function App() {
 
 			<section>
 				<article className="card">
-					<h1>Meal</h1>
-					<p>{meal}</p>
-					<img className="thumbnail" src={mealImage} />
-				</article>
-				<article className="card">
 					<h1>Joke</h1>
 					<p>{joke}</p>
 				</article>
@@ -110,6 +138,7 @@ function App() {
 					<h1>Quote</h1>
 					<p>{quote}</p>
 				</article>
+				<MealCard meal={meal} />
 			</section>
 		</div>
 	);
