@@ -19,6 +19,18 @@ function App() {
 
 	const genres = ["technical", "fictional", "non-fictional"];
 
+	function Book(props) {
+		const { book } = props;
+		console.log(props);
+		return (
+			<article>
+				<h2>{book.title}</h2>
+				<p>Author: {book.author}</p>
+				<span>Published by {book.publisher}</span>
+			</article>
+		);
+	}
+
 	return (
 		<section>
 			<h1>Favorite Books of {name}</h1>
@@ -32,11 +44,7 @@ function App() {
 			</p>
 			<div className="books">
 				{books.map((book) => (
-					<article key={book.id}>
-						<h2>{book.title}</h2>
-						<p>Author: {book.author}</p>
-						<span>Published by {book.publisher}</span>
-					</article>
+					<Book book={book} key={book.id} />
 				))}
 			</div>
 		</section>
