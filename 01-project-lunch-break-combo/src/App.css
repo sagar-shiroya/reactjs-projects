@@ -1,0 +1,360 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+.light,
+.dark {
+	min-height: 100vh;
+	padding: 2rem;
+	color: var(--foreground);
+	background: var(--background);
+	font-family:
+		Inter,
+		ui-sans-serif,
+		system-ui,
+		-apple-system,
+		BlinkMacSystemFont,
+		"Segoe UI",
+		sans-serif;
+	font-size: 1rem;
+	line-height: 1.5;
+	transition:
+		background-color 180ms ease,
+		color 180ms ease;
+}
+
+.light {
+	--background: #ffffff;
+	--foreground: #09090b;
+	--card: #ffffff;
+	--card-foreground: #09090b;
+	--muted: #f4f4f5;
+	--muted-foreground: #71717a;
+	--border: #e4e4e7;
+	--input: #e4e4e7;
+	--primary: #18181b;
+	--primary-foreground: #fafafa;
+	--accent: #f4f4f5;
+	--accent-foreground: #18181b;
+	--ring: #a1a1aa;
+	--shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.dark {
+	--background: #09090b;
+	--foreground: #fafafa;
+	--card: #09090b;
+	--card-foreground: #fafafa;
+	--muted: #27272a;
+	--muted-foreground: #a1a1aa;
+	--border: #27272a;
+	--input: #27272a;
+	--primary: #fafafa;
+	--primary-foreground: #18181b;
+	--accent: #27272a;
+	--accent-foreground: #fafafa;
+	--ring: #71717a;
+	--shadow: none;
+}
+
+.light ::selection,
+.dark ::selection {
+	color: var(--primary-foreground);
+	background: var(--primary);
+}
+
+.light h1,
+.light h2,
+.light h3,
+.light h4,
+.light h5,
+.light h6,
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+	color: var(--foreground);
+	font-weight: 700;
+	line-height: 1.1;
+	letter-spacing: 0;
+}
+
+.light h1,
+.dark h1 {
+	font-size: 2.25rem;
+}
+
+.light h2,
+.dark h2 {
+	font-size: 1.875rem;
+}
+
+.light h3,
+.dark h3 {
+	font-size: 1.5rem;
+}
+
+.light p,
+.light li,
+.dark p,
+.dark li {
+	color: var(--muted-foreground);
+}
+
+.light a,
+.dark a {
+	color: var(--foreground);
+	text-decoration: underline;
+	text-decoration-color: var(--border);
+	text-underline-offset: 4px;
+	transition:
+		color 160ms ease,
+		text-decoration-color 160ms ease;
+}
+
+.light a:hover,
+.dark a:hover {
+	text-decoration-color: var(--foreground);
+}
+
+.light button,
+.dark button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	height: 2.5rem;
+	border: 1px solid var(--primary);
+	border-radius: 0.375rem;
+	padding: 0 1rem;
+	color: var(--primary-foreground);
+	background: var(--primary);
+	font: inherit;
+	font-size: 0.875rem;
+	font-weight: 500;
+	white-space: nowrap;
+	cursor: pointer;
+	box-shadow: var(--shadow);
+	transition:
+		background-color 160ms ease,
+		border-color 160ms ease,
+		color 160ms ease,
+		box-shadow 160ms ease;
+}
+
+.light button:hover,
+.dark button:hover {
+	opacity: 0.9;
+}
+
+.light button:disabled,
+.dark button:disabled {
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+.light button:focus-visible,
+.dark button:focus-visible,
+.light input:focus-visible,
+.dark input:focus-visible,
+.light textarea:focus-visible,
+.dark textarea:focus-visible,
+.light select:focus-visible,
+.dark select:focus-visible {
+	outline: 2px solid var(--ring);
+	outline-offset: 2px;
+}
+
+.light button.secondary,
+.dark button.secondary,
+.light button.outline,
+.dark button.outline {
+	color: var(--foreground);
+	background: var(--background);
+	border-color: var(--border);
+	box-shadow: var(--shadow);
+}
+
+.light button.secondary:hover,
+.dark button.secondary:hover,
+.light button.outline:hover,
+.dark button.outline:hover {
+	background: var(--accent);
+	color: var(--accent-foreground);
+	opacity: 1;
+}
+
+.light .card,
+.dark .card,
+.light section,
+.dark section,
+.light article,
+.dark article {
+	color: var(--card-foreground);
+	background: var(--card);
+	border: 1px solid var(--border);
+	border-radius: 0.5rem;
+	box-shadow: var(--shadow);
+	padding: 25px;
+	margin-top: 15px;
+}
+
+.light .card,
+.dark .card {
+	padding: 1rem;
+}
+
+.light .muted,
+.dark .muted {
+	color: var(--muted-foreground);
+}
+
+.light .badge,
+.dark .badge {
+	display: inline-flex;
+	align-items: center;
+	border: 1px solid var(--border);
+	border-radius: 999px;
+	padding: 0.125rem 0.625rem;
+	color: var(--foreground);
+	background: var(--muted);
+	font-size: 0.75rem;
+	font-weight: 500;
+	line-height: 1.25rem;
+}
+
+.light input,
+.light textarea,
+.light select,
+.dark input,
+.dark textarea,
+.dark select {
+	width: 100%;
+	border: 1px solid var(--input);
+	border-radius: 0.375rem;
+	padding: 0.5rem 0.75rem;
+	color: var(--foreground);
+	background: transparent;
+	font: inherit;
+	font-size: 0.875rem;
+	transition:
+		border-color 160ms ease,
+		box-shadow 160ms ease,
+		color 160ms ease,
+		background-color 160ms ease;
+}
+
+.light input,
+.light select,
+.dark input,
+.dark select {
+	height: 2.5rem;
+}
+
+.light textarea,
+.dark textarea {
+	min-height: 5rem;
+	resize: vertical;
+}
+
+.light input::placeholder,
+.light textarea::placeholder,
+.dark input::placeholder,
+.dark textarea::placeholder {
+	color: var(--muted-foreground);
+}
+
+.light table,
+.dark table {
+	width: 100%;
+	border-collapse: collapse;
+	color: var(--foreground);
+	background: var(--background);
+	font-size: 0.875rem;
+}
+
+.light th,
+.light td,
+.dark th,
+.dark td {
+	padding: 0.75rem;
+	border-bottom: 1px solid var(--border);
+	text-align: left;
+	vertical-align: middle;
+}
+
+.light th,
+.dark th {
+	color: var(--muted-foreground);
+	font-weight: 500;
+}
+
+.light tr:hover td,
+.dark tr:hover td {
+	background: var(--muted);
+}
+
+.light hr,
+.dark hr {
+	border: 0;
+	border-top: 1px solid var(--border);
+}
+
+.light code,
+.dark code {
+	border-radius: 0.25rem;
+	padding: 0.15rem 0.3rem;
+	color: var(--foreground);
+	background: var(--muted);
+	font-family:
+		"SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+	font-size: 0.875em;
+}
+
+.light img.thumbnail,
+.dark img.thumbnail,
+.light .thumbnail img,
+.dark .thumbnail img {
+	display: block;
+	width: 100%;
+	max-width: 18rem;
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
+	border: 1px solid var(--border);
+	border-radius: 0.5rem;
+	background: var(--muted);
+	box-shadow: var(--shadow);
+	margin-top: 15px;
+	transition:
+		border-color 160ms ease,
+		box-shadow 160ms ease,
+		opacity 160ms ease;
+}
+
+.light img.thumbnail:hover,
+.dark img.thumbnail:hover,
+.light .thumbnail:hover img,
+.dark .thumbnail:hover img {
+	border-color: var(--ring);
+	opacity: 0.96;
+}
+
+.light .thumbnail,
+.dark .thumbnail {
+	display: inline-block;
+	width: fit-content;
+	overflow: hidden;
+	border-radius: 0.5rem;
+	height: 150px;
+	width: 250px;
+}
+
+.actionButtons {
+	display: flex;
+	gap: 25px;
+	align-items: center;
+	margin: 25px;
+}
