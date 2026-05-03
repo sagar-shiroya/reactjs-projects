@@ -71,41 +71,7 @@ function App() {
 	}
 
 	useEffect(() => {
-		async function loadInitialCombo() {
-			const mealUrl =
-				"https://api.freeapi.app/api/v1/public/meals/meal/random";
-			const quoteUrl =
-				"https://api.freeapi.app/api/v1/public/quotes/quote/random";
-			const jokeUrl =
-				"https://api.freeapi.app/api/v1/public/randomjokes/joke/random";
-			const options = {
-				method: "GET",
-				headers: { accept: "application/json" },
-			};
-
-			try {
-				const [mealResponse, jokeResponse, quoteResponse] =
-					await Promise.all([
-						fetch(mealUrl, options),
-						fetch(jokeUrl, options),
-						fetch(quoteUrl, options),
-					]);
-
-				const [mealData, jokeData, quoteData] = await Promise.all([
-					mealResponse.json(),
-					jokeResponse.json(),
-					quoteResponse.json(),
-				]);
-
-				setMeal(mealData.data);
-				setJoke(jokeData.data.content);
-				setQuote(quoteData.data.content);
-			} catch (error) {
-				console.error(error);
-			}
-		}
-
-		loadInitialCombo();
+		generateNewCombo();
 	}, []);
 
 	return (
