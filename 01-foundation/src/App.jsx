@@ -4,11 +4,13 @@ function App() {
 	const name = "Sagar";
 	const books = [
 		{
+			id: 1,
 			title: "Designing Data Intensive Applications",
 			author: "Martin Kleppman",
 			publisher: "O'reilly",
 		},
 		{
+			id: 2,
 			title: "Database Internals",
 			author: "Petrov",
 			publisher: "O'reilly",
@@ -30,7 +32,7 @@ function App() {
 			</p>
 			<div className="books">
 				{books.map((book) => (
-					<article>
+					<article key={book.id}>
 						<h2>{book.title}</h2>
 						<p>Author: {book.author}</p>
 						<span>Published by {book.publisher}</span>
