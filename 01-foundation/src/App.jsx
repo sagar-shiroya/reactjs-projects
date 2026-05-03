@@ -1,4 +1,5 @@
 import "./App.css";
+import Book from "./components/Book";
 
 function App() {
 	const name = "Sagar";
@@ -18,18 +19,6 @@ function App() {
 	];
 
 	const genres = ["technical", "fictional", "non-fictional"];
-
-	function Book(props) {
-		const { book } = props;
-		console.log(props);
-		return (
-			<article>
-				<h2>{book.title}</h2>
-				<p>Author: {book.author}</p>
-				<span>Published by {book.publisher}</span>
-			</article>
-		);
-	}
 
 	return (
 		<section>
