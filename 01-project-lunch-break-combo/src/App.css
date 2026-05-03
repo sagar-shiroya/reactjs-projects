@@ -360,9 +360,231 @@
 	margin: 25px;
 }
 
-.mealDetails {
+.light .jokeCard,
+.dark .jokeCard {
+	position: relative;
+	overflow: hidden;
 	display: grid;
+	gap: 1.25rem;
+	border-color: color-mix(in srgb, var(--border) 70%, var(--primary));
+	background:
+		linear-gradient(
+			135deg,
+			transparent 0 44%,
+			color-mix(in srgb, var(--muted) 84%, transparent)
+		),
+		var(--card);
+}
+
+.light .jokeCard::after,
+.dark .jokeCard::after {
+	position: absolute;
+	right: 1rem;
+	bottom: -2.75rem;
+	color: var(--primary);
+	content: "ha";
+	font-size: 5rem;
+	font-weight: 900;
+	letter-spacing: 0;
+	line-height: 1;
+	opacity: 0.05;
+	pointer-events: none;
+}
+
+.jokeHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	gap: 1rem;
+}
+
+.jokeHeader span {
+	border: 1px solid var(--border);
+	border-radius: 999px;
+	padding: 0.2rem 0.65rem;
+	color: var(--muted-foreground);
+	background: var(--background);
+	font-size: 0.75rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	white-space: nowrap;
+}
+
+.jokeBody {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 1rem;
+	align-items: start;
+}
+
+.jokeIcon {
+	display: inline-grid;
+	place-items: center;
+	width: 2.5rem;
+	height: 2.5rem;
+	border: 1px solid var(--border);
+	border-radius: 999px;
+	color: var(--primary-foreground);
+	background: var(--primary);
+	font-size: 1.35rem;
+	font-weight: 800;
+	line-height: 1;
+	box-shadow: var(--shadow);
+}
+
+.jokeText {
+	color: var(--foreground);
+	font-size: 1.15rem;
+	font-weight: 650;
+	line-height: 1.55;
+}
+
+.light .quoteCard,
+.dark .quoteCard {
+	position: relative;
+	overflow: hidden;
+	display: grid;
+	gap: 1.25rem;
+	border-color: color-mix(in srgb, var(--border) 72%, var(--primary));
+	background:
+		linear-gradient(
+			135deg,
+			color-mix(in srgb, var(--muted) 78%, transparent),
+			transparent 65%
+		),
+		var(--card);
+}
+
+.light .quoteCard::before,
+.dark .quoteCard::before {
+	position: absolute;
+	inset: 0 auto 0 0;
+	width: 0.35rem;
+	content: "";
+	background: var(--primary);
+	opacity: 0.9;
+}
+
+.quoteHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.quoteHeader span {
+	border: 1px solid var(--border);
+	border-radius: 999px;
+	padding: 0.2rem 0.65rem;
+	color: var(--muted-foreground);
+	background: var(--background);
+	font-size: 0.75rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	white-space: nowrap;
+}
+
+.quoteBody {
+	position: relative;
+	padding: 0.25rem 0 0 2.25rem;
+}
+
+.quoteMark {
+	position: absolute;
+	top: -1.15rem;
+	left: 0;
+	color: var(--primary);
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 5rem;
+	line-height: 1;
+	opacity: 0.18;
+}
+
+.quoteText {
+	position: relative;
+	margin: 0;
+	color: var(--foreground);
+	font-size: 1.3rem;
+	font-weight: 650;
+	line-height: 1.45;
+}
+
+.light .mealCard,
+.dark .mealCard {
+	position: relative;
+	overflow: hidden;
+	border-color: color-mix(in srgb, var(--border) 68%, var(--primary));
+	background:
+		linear-gradient(
+			180deg,
+			color-mix(in srgb, var(--muted) 72%, transparent),
+			transparent 22rem
+		),
+		var(--card);
+}
+
+.light .mealCard::before,
+.dark .mealCard::before {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	width: 4rem;
+	height: 4rem;
+	border: 1px solid var(--border);
+	border-radius: 999px;
+	content: "";
+	opacity: 0.45;
+	pointer-events: none;
+}
+
+.mealDetails {
+	position: relative;
+	display: grid;
+	gap: 1.25rem;
+}
+
+.mealHero {
+	display: grid;
+	grid-template-columns: minmax(13rem, 18rem) 1fr;
+	gap: 1.25rem;
+	align-items: stretch;
+}
+
+.light img.mealImage,
+.dark img.mealImage {
+	width: 100%;
+	max-width: none;
+	height: 100%;
+	min-height: 12rem;
+	margin-top: 0;
+	border-radius: 0.5rem;
+}
+
+.mealHeroContent {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 0.8rem;
+	min-width: 0;
+}
+
+.mealEyebrow {
+	width: fit-content;
+	border: 1px solid var(--border);
+	border-radius: 999px;
+	padding: 0.2rem 0.65rem;
+	color: var(--muted-foreground);
+	background: var(--background);
+	font-size: 0.75rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+
+.mealHeroContent h1 {
+	font-size: 2rem;
 }
 
 .mealMeta {
@@ -373,7 +595,27 @@
 
 .mealSection {
 	display: grid;
-	gap: 0.65rem;
+	gap: 0.75rem;
+	border: 1px solid var(--border);
+	border-radius: 0.5rem;
+	padding: 1rem;
+	background: color-mix(in srgb, var(--background) 66%, transparent);
+}
+
+.mealSectionHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.mealSectionHeader span {
+	color: var(--muted-foreground);
+	font-size: 0.8rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	white-space: nowrap;
 }
 
 .ingredientsList,
@@ -383,9 +625,9 @@
 
 .ingredientsList {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-	gap: 0.5rem 1rem;
-	list-style-position: inside;
+	grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+	gap: 0.65rem;
+	list-style: none;
 	padding-left: 0;
 }
 
@@ -393,23 +635,61 @@
 	display: flex;
 	justify-content: space-between;
 	gap: 0.75rem;
-	border-bottom: 1px solid var(--border);
-	padding-bottom: 0.35rem;
+	border: 1px solid var(--border);
+	border-radius: 0.5rem;
+	padding: 0.65rem 0.75rem;
+	background: var(--card);
 }
 
 .ingredientsList strong {
 	color: var(--foreground);
 	font-size: 0.9rem;
-	font-weight: 600;
+	font-weight: 700;
 	text-align: right;
+	white-space: nowrap;
 }
 
 .instructionsList {
 	display: grid;
-	gap: 0.5rem;
+	gap: 0.75rem;
+}
+
+.instructionsList li {
+	padding-left: 0.35rem;
 }
 
 .youtubeLink {
 	width: fit-content;
 	font-weight: 600;
+}
+
+.mealVideoLink {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	border: 1px solid var(--primary);
+	border-radius: 999px;
+	padding: 0.55rem 0.85rem;
+	/* color: var(--primary-foreground); */
+	/* background: var(--primary); */
+	text-decoration: none;
+	box-shadow: var(--shadow);
+}
+
+.mealVideoLink strong {
+	font-size: 0.8rem;
+	opacity: 0.75;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+
+@media (max-width: 720px) {
+	.mealHero {
+		grid-template-columns: 1fr;
+	}
+
+	.light img.mealImage,
+	.dark img.mealImage {
+		height: auto;
+	}
 }

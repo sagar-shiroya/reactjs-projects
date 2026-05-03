@@ -24,27 +24,38 @@ function MealCard({ meal }) {
 			.filter(Boolean);
 	}
 	return (
-		<article className="card">
-			<h1>Meal</h1>
+		<article className="card mealCard">
 			{meal ? (
 				<div className="mealDetails">
-					<h2>{meal.strMeal}</h2>
-					<div className="mealMeta">
-						{meal.strCategory && (
-							<span className="badge">{meal.strCategory}</span>
-						)}
-						{meal.strArea && (
-							<span className="badge">{meal.strArea}</span>
-						)}
+					<div className="mealHero">
+						<img
+							className="thumbnail mealImage"
+							src={meal.strMealThumb}
+							alt={meal.strMeal}
+						/>
+						<div className="mealHeroContent">
+							<span className="mealEyebrow">Meal pick</span>
+							<h1>{meal.strMeal}</h1>
+							<div className="mealMeta">
+								{meal.strCategory && (
+									<span className="badge">
+										{meal.strCategory}
+									</span>
+								)}
+								{meal.strArea && (
+									<span className="badge">
+										{meal.strArea}
+									</span>
+								)}
+							</div>
+						</div>
 					</div>
-					<img
-						className="thumbnail"
-						src={meal.strMealThumb}
-						alt={meal.strMeal}
-					/>
 
 					<div className="mealSection">
-						<h3>Ingredients</h3>
+						<div className="mealSectionHeader">
+							<h3>Ingredients</h3>
+							<span>{getIngredients(meal).length} items</span>
+						</div>
 						<ul className="ingredientsList">
 							{getIngredients(meal).map(
 								({ ingredient, measure }) => (
@@ -58,7 +69,16 @@ function MealCard({ meal }) {
 					</div>
 
 					<div className="mealSection">
-						<h3>Instructions</h3>
+						<div className="mealSectionHeader">
+							<h3>Instructions</h3>
+							<span>
+								{
+									getInstructionSteps(meal.strInstructions)
+										.length
+								}{" "}
+								steps
+							</span>
+						</div>
 						<ol className="instructionsList">
 							{getInstructionSteps(meal.strInstructions).map(
 								(step) => (
@@ -70,12 +90,12 @@ function MealCard({ meal }) {
 
 					{meal.strYoutube && (
 						<a
-							className="youtubeLink"
+							className="youtubeLink mealVideoLink"
 							href={meal.strYoutube}
 							target="_blank"
 							rel="noreferrer"
 						>
-							Watch recipe on YouTube
+							<strong>Watch Recipe YOUTUBE</strong>
 						</a>
 					)}
 				</div>

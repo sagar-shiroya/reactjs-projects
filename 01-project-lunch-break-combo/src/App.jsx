@@ -71,7 +71,44 @@ function App() {
 	}
 
 	useEffect(() => {
-		generateNewCombo();
+		async function loadInitialCombo() {
+			const options = {
+				method: "GET",
+				headers: { accept: "application/json" },
+			};
+
+			try {
+				const [mealResponse, jokeResponse, quoteResponse] =
+					await Promise.all([
+						fetch(
+							"https://api.freeapi.app/api/v1/public/meals/meal/random",
+							options,
+						),
+						fetch(
+							"https://api.freeapi.app/api/v1/public/randomjokes/joke/random",
+							options,
+						),
+						fetch(
+							"https://api.freeapi.app/api/v1/public/quotes/quote/random",
+							options,
+						),
+					]);
+
+				const [mealData, jokeData, quoteData] = await Promise.all([
+					mealResponse.json(),
+					jokeResponse.json(),
+					quoteResponse.json(),
+				]);
+
+				setMeal(mealData.data);
+				setJoke(jokeData.data.content);
+				setQuote(quoteData.data.content);
+			} catch (error) {
+				console.error(error);
+			}
+		}
+
+		loadInitialCombo();
 	}, []);
 
 	return (
@@ -96,13 +133,27 @@ function App() {
 			</div>
 
 			<section>
-				<article className="card">
-					<h1>Joke</h1>
-					<p>{joke}</p>
+				<article className="card jokeCard">
+					<div className="jokeHeader">
+						<h1>Joke</h1>
+						<span>Quick laugh</span>
+					</div>
+					<div className="jokeBody">
+						<span className="jokeIcon">!</span>
+						<p className="jokeText">{joke || "Loading joke..."}</p>
+					</div>
 				</article>
-				<article className="card">
-					<h1>Quote</h1>
-					<p>{quote}</p>
+				<article className="card quoteCard">
+					<div className="quoteHeader">
+						<h1>Quote</h1>
+						<span>Daily spark</span>
+					</div>
+					<div className="quoteBody">
+						<span className="quoteMark">“</span>
+						<blockquote className="quoteText">
+							{quote || "Loading quote..."}
+						</blockquote>
+					</div>
 				</article>
 				<MealCard meal={meal} />
 			</section>
