@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist",
+        "target": "esnext",
+        "module": "esnext",
+        "lib": ["DOM", "ESNext"],
+        "strict": true,
+        "jsx": "react",
+        "moduleResolution": "node",
+        "noEmitOnError": true,
+        "ignoreDeprecations": "6.0"
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "build"]
+}
